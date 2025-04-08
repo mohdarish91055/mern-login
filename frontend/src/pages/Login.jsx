@@ -11,6 +11,7 @@ const Login = () => {
     password: "",
   });
 
+  const [lazyLoading, setLazyLoading] = useState(false);
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserContext);
   const [errors, setErrors] = useState({});
@@ -33,6 +34,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLazyLoading(true);
     try {
       const response = await api.post("/auth/login", loginData);
 
@@ -44,6 +46,8 @@ const Login = () => {
       navigate("/");
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
+    } finally {
+      setLazyLoading(false);
     }
   };
 
@@ -79,14 +83,14 @@ const Login = () => {
 
         <button
           type="submit"
-          disabled={Object.keys(errors).length > 0}
+          disabled={Object.keys(errors).length > 0 || lazyLoading}
           className={`w-full bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 rounded-md transition duration-300 ${
             Object.keys(errors).length > 0
               ? "bg-gray-400 cursor-not-allowed"
               : ""
           }`}
         >
-          Login
+          {lazyLoading ? "Porcessing" : "Login"}
         </button>
 
         <div className="flex justify-between text-sm text-blue-500 mt-2">
