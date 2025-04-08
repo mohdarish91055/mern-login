@@ -12,7 +12,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://mern-login-1-rh9p.onrender.com"],
     credentials: true,
   })
 );
