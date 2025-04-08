@@ -3,7 +3,7 @@ import User from "../model/userModel.js";
 const updateUser = async (req, res) => {
   try {
     const { id } = req.params;
-
+    console.log(id);
     const { name, mobile, image } = req.body;
     const updatedUser = await User.findByIdAndUpdate(
       id,
