@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
+  const [saveLazy, setSaveLazy] = useState(false);
   const [lazyLoading, setLazyLoading] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
 
@@ -81,7 +82,7 @@ const Profile = () => {
   };
 
   const handleSave = async () => {
-    setLazyLoading(true);
+    setSaveLazy(true);
     const updatedUser = {
       ...user,
       name: formData.name,
@@ -101,7 +102,7 @@ const Profile = () => {
       console.error("Save error:", error);
       toast.error("Failed to update profile");
     } finally {
-      setLazyLoading(false);
+      setSaveLazy(false);
     }
   };
 
@@ -185,9 +186,9 @@ const Profile = () => {
             <button
               className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded mr-2"
               onClick={handleSave}
-              disabled={lazyLoading}
+              disabled={saveLazy}
             >
-              {lazyLoading ? "Saving" : "Save"}
+              {lazyLoading ? "Saving..." : "Save"}
             </button>
             <button
               className="bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded"
