@@ -18,7 +18,7 @@ const App = () => {
     <>
       <UserContext.Provider value={{ user, setUser }}>
         <AppRouter />
-        <ToastContainer position="top-center" autoClose={2000} />
+        <ToastContainer position="top-center" autoClose={1500} />
       </UserContext.Provider>
     </>
   );
