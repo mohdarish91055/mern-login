@@ -90,7 +90,7 @@ const Login = () => {
               : ""
           }`}
         >
-          {lazyLoading ? "Porcessing" : "Login"}
+          {lazyLoading ? "Porcessing..." : "Login"}
         </button>
 
         <div className="flex justify-between text-sm text-blue-500 mt-2">
