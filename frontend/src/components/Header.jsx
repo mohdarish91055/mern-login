@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import UserContext from "../context/UserContext";
 import api from "../services/api";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,9 +17,11 @@ const Header = () => {
       await api.post("/auth/logout");
       setUser(null);
       localStorage.removeItem("user");
+      toast.success("Logout Successfully");
       navigate("/login");
     } catch (error) {
       console.error("logout failed", error);
+      toast.error("Logout Failed");
     }
   };
 
