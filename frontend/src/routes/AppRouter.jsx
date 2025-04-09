@@ -23,6 +23,7 @@ const AppRouter = () => {
           </Routes>
         </div>
       </BrowserRouter>
+      
     </>
   );
 };
